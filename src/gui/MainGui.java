@@ -5,8 +5,11 @@
  */
 package gui;
 
+import java.net.URL;
 import javafx.application.*;
+import javafx.fxml.*;
 import javafx.scene.*;
+import javafx.scene.layout.*;
 import javafx.stage.*;
 
 /**
@@ -15,17 +18,28 @@ import javafx.stage.*;
  */
 public class MainGui extends Application {
 
+    
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        try {
+            URL location = getClass().getResource("Component_controler.fxml");
+            FXMLLoader fxmlloader = new FXMLLoader(location);
+            Pane root = (Pane) fxmlloader.load();
+            //Group group = new Group();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
     }
-    
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Group group = new Group();
-        Scene scene = new Scene(root);
-    }
-    
 }
