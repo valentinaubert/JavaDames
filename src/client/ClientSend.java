@@ -34,7 +34,11 @@ public class ClientSend implements Runnable {
             while (true) {
                 System.out.print("Votre message >> ");
                 String m = sc.nextLine();
-                Message mess = new Message("client", m);
+                System.out.println(m);
+                Message mess;
+                if(m.equals("exit")) mess = null;
+                else mess = new Message("client", m);
+                System.out.println(mess);
                 out.writeObject(mess);
                 out.flush();
                 // Todo : ajouter un mot qui permette à l'utilisateur de quitter le chat

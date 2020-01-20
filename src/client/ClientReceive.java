@@ -6,6 +6,7 @@
 package client;
 
 import common.Message;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -41,8 +42,15 @@ public class ClientReceive implements Runnable {
                 }
             }
             client.disconnectedServer();
+        } 
+        catch (EOFException ex) {
+            try {
+                client.disconnectedServer();
+            } catch (IOException ex1) {
+                Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         } catch (IOException ex) {
-            Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
         }

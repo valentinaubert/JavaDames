@@ -71,6 +71,6 @@ public class ConnectedClient implements Runnable {
     public void closeClient() throws IOException{
         this.in.close();
         this.out.close();
-        this.socket.close();
+       this.socket.close();
     }
 }

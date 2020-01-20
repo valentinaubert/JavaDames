@@ -45,7 +45,9 @@ public class Server {
     public void disconnectedClient(ConnectedClient discClient) throws IOException{
         discClient.closeClient();
         for(ConnectedClient client : clients) {
-            client.sendMessage(new Message("Server", "Le client " + discClient.getId() + " nous a quitté"));
+            if (client.getId() != discClient.getId()) {
+                client.sendMessage(new Message("Server", "Le client " + discClient.getId() + " nous a quitté"));
+            }
         }
         clients.remove(discClient);
     }
