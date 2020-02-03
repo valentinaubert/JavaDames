@@ -36,12 +36,12 @@ public class ClientSend implements Runnable {
                 String m = sc.nextLine();
                 System.out.println(m);
                 Message mess;
+                // Message permettant de quitter le chat
                 if(m.equals("exit")) mess = null;
                 else mess = new Message("client", m);
                 System.out.println(mess);
                 out.writeObject(mess);
                 out.flush();
-                // Todo : ajouter un mot qui permette à l'utilisateur de quitter le chat
             }             
         } catch (IOException ex) {
                 Logger.getLogger(ClientSend.class.getName()).log(Level.SEVERE, null, ex);
