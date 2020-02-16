@@ -23,12 +23,12 @@ public class MainGui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         try {
-            URL location = getClass().getResource("Chat_interface.fxml");
+            URL location = getClass().getResource("Login_interface.fxml");
             FXMLLoader fxmlloader = new FXMLLoader(location);
             Pane root = (Pane) fxmlloader.load();
             //Group group = new Group();
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Super chat");
+            primaryStage.setTitle("Connexion au chat");
             primaryStage.setScene(scene);
             primaryStage.show();
         }
