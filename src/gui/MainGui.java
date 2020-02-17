@@ -6,6 +6,8 @@
 package gui;
 
 import client.Client;
+import client.Client;
+import client.Client;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -50,10 +52,8 @@ public class MainGui extends Application {
             } else {
                 String address = args[0];
                 Integer port = new Integer(args[1]);
-                launch(args);
-                // TODO : Modifier les classes Client, ClientSend et ClientReceive
                 Client c = new Client(address, port);
-                
+                launch(args);
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
