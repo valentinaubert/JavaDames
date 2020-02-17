@@ -5,7 +5,10 @@
  */
 package gui;
 
+import client.Client;
+import java.io.IOException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import javafx.application.*;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -41,6 +44,28 @@ public class MainGui extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        try {
+            if (args.length != 2) {
+                printUsage();
+            } else {
+                String address = args[0];
+                Integer port = new Integer(args[1]);
+                launch(args);
+                // TODO : Modifier les classes Client, ClientSend et ClientReceive
+                Client c = new Client(address, port);
+                
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    private static void printUsage() {
+        System.out.println("java client.Client <address> <port>");
+        System.out.println("\t<address>: server's ip address");
+        System.out.println("\t<port>: server's port");
     }
 }

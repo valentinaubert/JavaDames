@@ -23,6 +23,8 @@ public class Login_controller {
         loginRslt.setText("Connexion en cours");
         // RECUPERATION USERNAME : usernameField.getText();
         // RECUPERATION PWD : passwordField.getText();
+        String userName = usernameField.getText();
+        String password = passwordField.getText();
         
         /* Créer une classe qui interroge une BDD, vérifie l'existence de l'utilisateur, la validité du mdp, et valide ou non la connexion */
     }
