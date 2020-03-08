@@ -35,20 +35,9 @@ public class Login_controller {
         /* Créer une classe qui interroge une BDD, vérifie l'existence de l'utilisateur, la validité du mdp, et valide ou non la connexion */
         
         // Ouverture d'une nouvelle fenêtre contenant le chat
-        URL location = getClass().getResource("Chat_interface.fxml");
-        FXMLLoader fxmlloader = new FXMLLoader(location);
-        Pane root = (Pane) fxmlloader.load();
-        Scene scene = new Scene(root);
-        Stage fenetreChat = new Stage();
-        fenetreChat.setTitle("Chat");
-        fenetreChat.setScene(scene);
-        fenetreChat.show();
-        MainGui.setChatStage(fenetreChat);
+        MainGui.appGui.OpenChatStage();
         
         // Fermeture de la fenêtre de login
-        Stage primaryStage = MainGui.getConnectionStage();
-        primaryStage.close();
-        
-        
+        MainGui.appGui.CloseConnectionStage();
     }
 }

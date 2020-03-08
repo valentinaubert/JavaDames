@@ -7,12 +7,8 @@ package gui;
 
 import client.Client;
 import java.io.IOException;
-import java.net.URL;
 import java.net.UnknownHostException;
 import javafx.application.*;
-import javafx.fxml.*;
-import javafx.scene.*;
-import javafx.scene.layout.*;
 import javafx.stage.*;
 
 /**
@@ -21,25 +17,14 @@ import javafx.stage.*;
  */
 public class MainGui extends Application {
 
-    private static Stage connectionStage;
-    private static Stage chatStage;
+    public static Interfaceur appGui; //Permettra d'accéder à l'objet gérant les interfaces
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        try {
-            URL location = getClass().getResource("Login_interface.fxml");
-            FXMLLoader fxmlloader = new FXMLLoader(location);
-            Pane root = (Pane) fxmlloader.load();
-            //Group group = new Group();
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("Connexion au chat");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            setConnectionStage(primaryStage);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        // Création d'un objet de type interfaceur, qui gérera tous les changements de fenêtre
+        Interfaceur newGui = new Interfaceur();
+        MainGui.appGui = newGui;
+        appGui.OpenConnectionStage(primaryStage);
     }
     
     /**
@@ -67,33 +52,5 @@ public class MainGui extends Application {
         System.out.println("java client.Client <address> <port>");
         System.out.println("\t<address>: server's ip address");
         System.out.println("\t<port>: server's port");
-    }
-
-    /**
-     * @return the primaryStage
-     */
-    public static Stage getConnectionStage() {
-        return connectionStage;
-    }
-
-    /**
-     * @param aPrimaryStage the primaryStage to set
-     */
-    public static void setConnectionStage(Stage aPrimaryStage) {
-        connectionStage = aPrimaryStage;
-    }
-
-    /**
-     * @return the chatStage
-     */
-    public static Stage getChatStage() {
-        return chatStage;
-    }
-
-    /**
-     * @param aChatStage the chatStage to set
-     */
-    public static void setChatStage(Stage aChatStage) {
-        chatStage = aChatStage;
     }
 }
