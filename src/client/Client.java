@@ -23,6 +23,7 @@ public class Client {
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    public ClientSend sender;
     
     public Client(String address, int port) throws UnknownHostException, IOException{
         this.port = port;
@@ -30,7 +31,8 @@ public class Client {
         InetAddress ipAddress = InetAddress.getByName(address);
         this.socket = new Socket(ipAddress, port);
         this.out = new ObjectOutputStream(this.socket.getOutputStream());
-        Thread threadClientSend = new Thread(new ClientSend(socket,out));
+        this.sender = new ClientSend(socket,out);
+        Thread threadClientSend = new Thread(this.sender);
         Thread threadClientReceive = new Thread(new ClientReceive(this,socket));
         threadClientSend.start();
         threadClientReceive.start();

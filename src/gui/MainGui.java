@@ -7,7 +7,6 @@ package gui;
 
 import client.Client;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import javafx.application.*;
 import javafx.stage.*;
 
@@ -18,7 +17,13 @@ import javafx.stage.*;
 public class MainGui extends Application {
 
     public static Interfaceur appGui; //Permettra d'accéder à l'objet gérant les interfaces
+    public static Client leClient; // Permet d'agir sur la classe client
     
+    /**
+     * Ouvre l'interface de connexion
+     * @param primaryStage Stage initial de l'application
+     * @throws java.lang.Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Création d'un objet de type interfaceur, qui gérera tous les changements de fenêtre
@@ -29,24 +34,19 @@ public class MainGui extends Application {
     
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws IOException {
             if (args.length != 2) {
                 printUsage();
             } else {
                 String address = args[0];
                 Integer port = new Integer(args[1]);
                 Client c = new Client(address, port);
+                MainGui.leClient = c;
                 launch(args);
             }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        
-    }
     
     private static void printUsage() {
         System.out.println("java client.Client <address> <port>");

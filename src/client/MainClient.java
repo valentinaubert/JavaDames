@@ -15,21 +15,19 @@ public class MainClient {
      * construct a new client
      *
      * @param args
+     * @return client créé ou null
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
-        try {
-            if (args.length != 2) {
-                printUsage();
-            } else {
-                String address = args[0];
-                Integer port = new Integer(args[1]);
-                Client c = new Client(address, port);
-            }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static Client main(String[] args) throws IOException {
+        if (args.length != 2) {
+            printUsage();
+        } else {
+            String address = args[0];
+            Integer port = new Integer(args[1]);
+            Client c = new Client(address, port);
+            return c;
         }
+        return null;
     }
 
     private static void printUsage() {

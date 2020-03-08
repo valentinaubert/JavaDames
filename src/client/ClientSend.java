@@ -29,23 +29,31 @@ public class ClientSend implements Runnable {
     
     @Override
     public void run(){
-        try {
+        //try {
             Scanner sc = new Scanner(System.in);
             while (true) {
-                System.out.print("Votre message >> ");
+                /*System.out.print("Votre message >> ");
                 String m = sc.nextLine();
                 System.out.println(m);
+                
                 Message mess;
                 // Message permettant de quitter le chat
                 if(m.equals("exit")) mess = null;
                 else mess = new Message("client", m);
                 System.out.println(mess);
                 out.writeObject(mess);
-                out.flush();
+                out.flush();*/
             }             
-        } catch (IOException ex) {
-                Logger.getLogger(ClientSend.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        //} catch (IOException ex) {
+               // Logger.getLogger(ClientSend.class.getName()).log(Level.SEVERE, null, ex);
+            //}
+    }
+    
+    public void sendMessage(String message) throws IOException{
+        Message mess;
+        mess = new Message("client", message);
+        out.writeObject(mess);
+        out.flush();
     }
     
     
