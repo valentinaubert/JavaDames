@@ -5,11 +5,16 @@
  */
 package gui;
 
+import common.Message;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 /**
@@ -73,5 +78,11 @@ public class Interfaceur {
             this.chatStage.close();
             this.chatStage = null;
         }
+    }
+    
+    public void receptionMessage(Message mess){
+        Label nouveauMessage = new Label(mess.toString());
+        TextFlow receivedText = (TextFlow) this.chatStage.getScene().lookup("#tf_ReceivedText");
+        receivedText.getChildren().add(nouveauMessage);
     }
 }

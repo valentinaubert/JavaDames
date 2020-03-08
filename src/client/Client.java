@@ -12,6 +12,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,6 +26,7 @@ public class Client {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     public ClientSend sender;
+    private ArrayList<String> msgEnAttente;
     
     public Client(String address, int port) throws UnknownHostException, IOException{
         this.port = port;
@@ -32,6 +35,7 @@ public class Client {
         this.socket = new Socket(ipAddress, port);
         this.out = new ObjectOutputStream(this.socket.getOutputStream());
         this.sender = new ClientSend(socket,out);
+        this.msgEnAttente = new ArrayList();
         Thread threadClientSend = new Thread(this.sender);
         Thread threadClientReceive = new Thread(new ClientReceive(this,socket));
         threadClientSend.start();
@@ -46,6 +50,20 @@ public class Client {
     }
     
     public void messageReceived(Message mess){
-        System.out.println(mess);
+        this.msgEnAttente.add(mess.toString());
+    }
+
+    /**
+     * @return the msgEnAttente
+     */
+    public ArrayList<String> getMsgEnAttente() {
+        return msgEnAttente;
+    }
+
+    /**
+     * Vide la liste de messages en attente
+     */
+    public void clearMsgEnAttente() {
+        this.msgEnAttente.clear();
     }
 }
