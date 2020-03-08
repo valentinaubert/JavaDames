@@ -6,8 +6,6 @@
 package gui;
 
 import client.Client;
-import client.Client;
-import client.Client;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -23,7 +21,8 @@ import javafx.stage.*;
  */
 public class MainGui extends Application {
 
-    
+    private static Stage connectionStage;
+    private static Stage chatStage;
     
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -36,6 +35,7 @@ public class MainGui extends Application {
             primaryStage.setTitle("Connexion au chat");
             primaryStage.setScene(scene);
             primaryStage.show();
+            setConnectionStage(primaryStage);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -67,5 +67,33 @@ public class MainGui extends Application {
         System.out.println("java client.Client <address> <port>");
         System.out.println("\t<address>: server's ip address");
         System.out.println("\t<port>: server's port");
+    }
+
+    /**
+     * @return the primaryStage
+     */
+    public static Stage getConnectionStage() {
+        return connectionStage;
+    }
+
+    /**
+     * @param aPrimaryStage the primaryStage to set
+     */
+    public static void setConnectionStage(Stage aPrimaryStage) {
+        connectionStage = aPrimaryStage;
+    }
+
+    /**
+     * @return the chatStage
+     */
+    public static Stage getChatStage() {
+        return chatStage;
+    }
+
+    /**
+     * @param aChatStage the chatStage to set
+     */
+    public static void setChatStage(Stage aChatStage) {
+        chatStage = aChatStage;
     }
 }
