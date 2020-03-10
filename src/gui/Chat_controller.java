@@ -25,12 +25,7 @@ public class Chat_controller {
         textToSend.clear();
         MainGui.appGui.receptionMessage(new Message("Moi",text));
     }
-    
-    @FXML protected void refreshChat(ActionEvent event){
-        ArrayList<String> lesMessages = MainGui.leClient.getMsgEnAttente();
-        for(String unMessage : lesMessages ){
-            tf_ReceivedText.getChildren().add(new Text(unMessage));
-        }
-        MainGui.leClient.clearMsgEnAttente();
+    @FXML protected void clearChat(ActionEvent event) throws IOException {
+        tf_ReceivedText.getChildren().clear();
     }
 }

@@ -78,6 +78,11 @@ public class Interfaceur {
         });
         fenetreChat.show();
         this.chatStage = fenetreChat;
+        
+        //Adaptation du défilement du ScrollPane à la taille du TextFlow
+        TextFlow receivedText = (TextFlow) fenetreChat.getScene().lookup("#tf_ReceivedText");
+        ScrollPane scrollReceivedText = (ScrollPane) fenetreChat.getScene().lookup("#scroll_ReceivedText");
+        scrollReceivedText.vvalueProperty().bind(receivedText.heightProperty());
     }
     
     /**
