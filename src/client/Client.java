@@ -6,6 +6,7 @@
 package client;
 
 import common.Message;
+import gui.MainGui;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +15,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 
 /**
  *
@@ -38,7 +40,7 @@ public class Client {
         this.msgEnAttente = new ArrayList();
         Thread threadClientSend = new Thread(this.sender);
         Thread threadClientReceive = new Thread(new ClientReceive(this,socket));
-        threadClientSend.start();
+        //threadClientSend.start();
         threadClientReceive.start();
     }
     
@@ -51,6 +53,11 @@ public class Client {
     
     public void messageReceived(Message mess){
         this.msgEnAttente.add(mess.toString());
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                MainGui.appGui.receptionMessage(mess);
+            }
+        });
     }
 
     /**

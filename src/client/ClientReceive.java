@@ -31,14 +31,21 @@ public class ClientReceive implements Runnable {
     @Override
     public void run(){
         try {
+            
+                System.out.println("Thread ClentReceive");
             this.in = new ObjectInputStream(this.socket.getInputStream());
+            
+                System.out.println("Thread ClentReceive");
             boolean isActive = true;
             while(isActive) {
                 Message mess = (Message) in.readObject();
+                System.out.println("Thread ClentReceive");
                 if (mess != null) {
                     this.client.messageReceived(mess);
+                    System.out.println("Message : " + mess);
                 } else {
                     isActive = false;
+                    System.out.println("Message vide");
                 }
             }
             client.disconnectedServer();
@@ -50,7 +57,7 @@ public class ClientReceive implements Runnable {
                 Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } catch (IOException ex) {
-           // Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
         }

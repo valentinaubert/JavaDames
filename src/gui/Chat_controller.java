@@ -1,5 +1,6 @@
 package gui;
 
+import common.Message;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ public class Chat_controller {
         String text = textToSend.getText();
         MainGui.leClient.sender.sendMessage(text);
         textToSend.clear();
+        MainGui.appGui.receptionMessage(new Message("Moi",text));
     }
     
     @FXML protected void refreshChat(ActionEvent event){
