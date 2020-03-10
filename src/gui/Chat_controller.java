@@ -25,6 +25,7 @@ public class Chat_controller {
         textToSend.clear();
         MainGui.appGui.receptionMessage(new Message("Moi",text));
     }
+    
     @FXML protected void clearChat(ActionEvent event) throws IOException {
         tf_ReceivedText.getChildren().clear();
     }

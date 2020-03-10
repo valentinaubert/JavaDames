@@ -26,6 +26,7 @@ public class Login_controller {
         // RECUPERATION PWD : passwordField.getText();
         String userName = usernameField.getText();
         String password = passwordField.getText();
+        MainGui.leClient.sender.sendConnexionMessage(userName);
         
         /* Créer une classe qui interroge une BDD, vérifie l'existence de l'utilisateur, la validité du mdp, et valide ou non la connexion */
         

@@ -48,4 +48,12 @@ public class ClientSend implements Runnable {
         out.writeObject(mess);
         out.flush();
     }
+    
+    public void sendConnexionMessage(String pseudo) throws IOException{
+        Message mess;
+        if(pseudo.isEmpty()) pseudo = "Anonyme";
+        mess = new Message("client", pseudo, 2);
+        out.writeObject(mess);
+        out.flush();
+    }
 }

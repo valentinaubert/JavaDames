@@ -25,8 +25,15 @@ public class ConnectedClient implements Runnable {
     public int getId() {
         return id;
     }
+        /**
+     * @return the pseudo
+     */
+    public String getPseudo() {
+        return pseudo;
+    }
     private static int idCounter = 0;
     private int id;
+    private String pseudo;
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -48,8 +55,15 @@ public class ConnectedClient implements Runnable {
             while (isActive) {
                 Message mess = (Message) in.readObject();
                 if(mess != null){
-                    mess.setSender(String.valueOf(id));
-                    server.broadcastMessage(mess,id);
+                    if(mess.getType() == 1){
+                        mess.setSender(String.valueOf(getPseudo()));
+                        server.broadcastMessage(mess,id);
+                    }
+                    else if(mess.getType() == 2){
+                        this.pseudo = mess.getContent();
+                        Message msgConnexion = new Message("Server", this.getPseudo() + " vient de se connecter");
+                        server.broadcastMessage(msgConnexion, id);
+                    }
                 }
                 else{
                     server.disconnectedClient(this);
@@ -73,4 +87,6 @@ public class ConnectedClient implements Runnable {
         this.out.close();
        this.socket.close();
     }
+
+
 }

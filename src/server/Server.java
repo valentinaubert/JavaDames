@@ -27,10 +27,6 @@ public class Server {
     }
     
     public void addClient(ConnectedClient newClient) throws IOException{
-        Message mess = new Message("Server", newClient.getId() + " vient de se connecter");
-        for(ConnectedClient client : clients) {
-            client.sendMessage(mess);
-        }
         this.clients.add(newClient);
     }
     
@@ -46,7 +42,7 @@ public class Server {
         discClient.closeClient();
         for(ConnectedClient client : clients) {
             if (client.getId() != discClient.getId()) {
-                client.sendMessage(new Message("Server", "Le client " + discClient.getId() + " nous a quitté"));
+                client.sendMessage(new Message("Server", "Le client " + discClient.getPseudo() + " nous a quitté"));
             }
         }
         clients.remove(discClient);
