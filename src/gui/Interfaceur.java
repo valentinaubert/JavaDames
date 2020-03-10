@@ -8,12 +8,15 @@ package gui;
 import common.Message;
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
@@ -41,6 +44,14 @@ public class Interfaceur {
         Scene scene = new Scene(root);
         connectionStage.setTitle("Connexion au chat");
         connectionStage.setScene(scene);
+        // Action de fermeture de l'application
+        connectionStage.setOnCloseRequest(event -> {
+            try {
+                MainGui.leClient.sender.sendMessage("exit");
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaceur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         connectionStage.show();
         this.connectionStage = connectionStage;
     }
@@ -56,6 +67,15 @@ public class Interfaceur {
         Stage fenetreChat = new Stage();
         fenetreChat.setTitle("Chat");
         fenetreChat.setScene(scene);
+        
+        // Action de fermeture de l'application
+        fenetreChat.setOnCloseRequest(event -> {
+            try {
+                MainGui.leClient.sender.sendMessage("exit");
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaceur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         fenetreChat.show();
         this.chatStage = fenetreChat;
     }
@@ -81,7 +101,7 @@ public class Interfaceur {
     }
     
     public void receptionMessage(Message mess){
-        Label nouveauMessage = new Label(mess.toString());
+        Text nouveauMessage = new Text(mess.toString() + " \n");
         TextFlow receivedText = (TextFlow) this.chatStage.getScene().lookup("#tf_ReceivedText");
         receivedText.getChildren().add(nouveauMessage);
     }

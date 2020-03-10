@@ -43,7 +43,8 @@ public class ClientSend implements Runnable {
     
     public void sendMessage(String message) throws IOException{
         Message mess;
-        mess = new Message("client", message);
+        if(message.equals("exit")) mess = null;
+        else mess = new Message("client", message);
         out.writeObject(mess);
         out.flush();
     }
