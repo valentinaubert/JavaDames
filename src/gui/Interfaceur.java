@@ -6,6 +6,7 @@
 package gui;
 
 import common.Message;
+import java.awt.Font;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -107,6 +109,12 @@ public class Interfaceur {
     
     public void receptionMessage(Message mess){
         Text nouveauMessage = new Text(mess.toString() + " \n");
+        if(mess.getType() == 3) { 
+            nouveauMessage.setStyle("-fx-font-style: italic;");
+            nouveauMessage.setFill(Color.GRAY);
+        }
+        else if(mess.getType() == 4) nouveauMessage.setFill(Color.BLUE);;
+        
         TextFlow receivedText = (TextFlow) this.chatStage.getScene().lookup("#tf_ReceivedText");
         receivedText.getChildren().add(nouveauMessage);
     }

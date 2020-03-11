@@ -13,6 +13,8 @@ public class Message implements Serializable{
     /***
      * 1 = message textuel
      * 2 = connexion
+     * 3 = Message serveur
+     * 4 = Message envoyé à soi-même
      */
     private int type;
     

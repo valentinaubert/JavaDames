@@ -23,7 +23,7 @@ public class Chat_controller {
         String text = textToSend.getText();
         MainGui.leClient.sender.sendMessage(text);
         textToSend.clear();
-        MainGui.appGui.receptionMessage(new Message("Moi",text));
+        MainGui.appGui.receptionMessage(new Message("Moi",text,4));
     }
     
     @FXML protected void clearChat(ActionEvent event) throws IOException {

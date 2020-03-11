@@ -42,7 +42,7 @@ public class Server {
         discClient.closeClient();
         for(ConnectedClient client : clients) {
             if (client.getId() != discClient.getId()) {
-                client.sendMessage(new Message("Server", "Le client " + discClient.getPseudo() + " nous a quitté"));
+                client.sendMessage(new Message("Server", "Le client " + discClient.getPseudo() + " nous a quitté",3));
             }
         }
         clients.remove(discClient);

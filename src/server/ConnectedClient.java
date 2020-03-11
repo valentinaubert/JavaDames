@@ -61,7 +61,7 @@ public class ConnectedClient implements Runnable {
                     }
                     else if(mess.getType() == 2){
                         this.pseudo = mess.getContent();
-                        Message msgConnexion = new Message("Server", this.getPseudo() + " vient de se connecter");
+                        Message msgConnexion = new Message("Server", this.getPseudo() + " vient de se connecter",3);
                         server.broadcastMessage(msgConnexion, id);
                     }
                 }
