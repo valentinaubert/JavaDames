@@ -47,5 +47,14 @@ public class Server {
         }
         clients.remove(discClient);
     }
+
+    void sendPrivateMessage(String content, String sender, String destinataire) throws IOException {
+        Message mess = new Message(sender,"(Message privé) " + content,6);
+        for(ConnectedClient client : clients){
+            if(client.getPseudo().equals(destinataire)) {
+                client.sendMessage(mess);
+            }
+        }
+    }
     
 }

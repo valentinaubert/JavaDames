@@ -4,7 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/G:/UE_Java/Projet/Chat_Dames/src/gui/Interfaceur.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/common/Message.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/server/MainServer.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/client/ClientReceive.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/gui/Chat_controller.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/gui/Login_controller.java</file>
             <file>file:/G:/UE_Java/Projet/Chat_Dames/src/gui/MainGui.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/server/ConnectedClient.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/gui/Chat_interface.fxml</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/client/Client.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/server/Connection.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/client/ClientSend.java</file>
+            <file>file:/G:/UE_Java/Projet/Chat_Dames/src/server/Server.java</file>
         </group>
     </open-files>
 </project-private>

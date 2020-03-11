@@ -2,12 +2,10 @@ package gui;
 
 import common.Message;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 /**
  *
@@ -21,7 +19,8 @@ public class Chat_controller {
     
     @FXML protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         String text = textToSend.getText();
-        MainGui.leClient.sender.sendMessage(text);
+        if(text.startsWith("/")) MainGui.leClient.sender.sendPrivateMessage(text);
+        else MainGui.leClient.sender.sendMessage(text);
         textToSend.clear();
         MainGui.appGui.receptionMessage(new Message("Moi",text,4));
     }

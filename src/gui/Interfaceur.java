@@ -113,7 +113,8 @@ public class Interfaceur {
             nouveauMessage.setStyle("-fx-font-style: italic;");
             nouveauMessage.setFill(Color.GRAY);
         }
-        else if(mess.getType() == 4) nouveauMessage.setFill(Color.BLUE);;
+        else if(mess.getType() == 4) nouveauMessage.setFill(Color.BLUE);
+        else if(mess.getType() == 6) nouveauMessage.setFill(Color.RED);
         
         TextFlow receivedText = (TextFlow) this.chatStage.getScene().lookup("#tf_ReceivedText");
         receivedText.getChildren().add(nouveauMessage);

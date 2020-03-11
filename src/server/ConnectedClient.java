@@ -64,6 +64,12 @@ public class ConnectedClient implements Runnable {
                         Message msgConnexion = new Message("Server", this.getPseudo() + " vient de se connecter",3);
                         server.broadcastMessage(msgConnexion, id);
                     }
+                    else if(mess.getType() == 5){
+                        String[] tabTexte = mess.getContent().split(" ");
+                        int tailleDestinataire = tabTexte[0].length();
+                        String destinataire = tabTexte[0].substring(1);
+                        server.sendPrivateMessage(mess.getContent().substring(tailleDestinataire),pseudo,destinataire);
+                    }
                 }
                 else{
                     server.disconnectedClient(this);

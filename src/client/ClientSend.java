@@ -56,4 +56,11 @@ public class ClientSend implements Runnable {
         out.writeObject(mess);
         out.flush();
     }
+
+    public void sendPrivateMessage(String message) throws IOException {
+        Message mess;
+        mess = new Message("client", message, 5);
+        out.writeObject(mess);
+        out.flush();
+    }
 }

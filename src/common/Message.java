@@ -15,6 +15,7 @@ public class Message implements Serializable{
      * 2 = connexion
      * 3 = Message serveur
      * 4 = Message envoyé à soi-même
+     * 5 = Message privé
      */
     private int type;
     
